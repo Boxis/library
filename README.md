@@ -25,3 +25,7 @@ Using HTML/CSS and JS files set up an interactive library web page.
 * Add button on each book's display to change its read status
     * Function that toggles a book's read status on your Book prototype instance
 
+* CSS formatting
+    * colors
+    * font
+    * icons
