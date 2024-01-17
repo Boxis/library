@@ -12,15 +12,74 @@
 
     <div class="container">
         <h1>Library</h1>
-        <!-- <div>
-            <button>ADD BOOK</button>
-        </div> -->
+
 
         <dialog>
-            <button autofocus>Close</button>
-            <p>This modal dialog has a groovy backdrop!</p>
+            <form>
+                <h3>Enter Book Details here</h3>
+                <p>
+                    <label for="title">
+                        <span>Title: </span>
+                        <strong><span aria-label="required">*</span></strong>
+                    </label>
+                    <input type="text" 
+                           id="title" 
+                           name="title" 
+                           value="Default Book Name"
+                           required />
+                </p>
+                <p>
+                    <label for="author">
+                        <span>Author: </span>
+                        <strong><span aria-label="required">*</span></strong>
+                    </label>
+                    <input type="text" 
+                           id="author" 
+                           name="author" 
+                           value="Author Name"
+                           required />
+                </p>
+                <p>
+                    <label for="pages">
+                        <span>Pages: </span>
+                        <strong><span aria-label="required">*</span></strong>
+                    </label>
+                    <input type="number" 
+                           id="pages" 
+                           name="pages" 
+                           min="0"
+                           value="123"
+                           required />
+                </p>
+                <fieldset>
+                    <legend>Read</legend>
+                    <ul>
+                        <li>
+                            <label for="read">
+                                <input type="radio" 
+                                       id="read" 
+                                       name="read"
+                                       value="yes"
+                                       checked />
+                                       Yes
+                            </label>
+                        </li>
+                        <li>
+                            <label for="read">
+                                <input type="radio" 
+                                       id="read" 
+                                       name="read"
+                                       value="no" />
+                                       No
+                            </label>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+            <button id="submit-btn" autofocus>Submit</button>
+            <button id="close-btn">Close</button>
         </dialog>
-        <button id="myButton">Show the dialog</button>
+        <button>NEW BOOK</button>
 
         <div class="library-area">
             <div class="book-card">
