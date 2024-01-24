@@ -1,34 +1,80 @@
 const myLibrary = [];
 
-function getBookInfo () {
+// Example books for array
+const book1 = new Book ("Book A", "Author A", 123, "yes");
+const book2 = new Book ("Book B", "Author B", 123, "no");
+const book3 = new Book ("Book C", "Author C", 11223, "yes");
+const book4 = new Book ("Book D", "Author D", 11223, "yes");
 
-  var author = document.getElementById("author").value;
-  var title = document.getElementById("title").value;
-  var pages = document.getElementById("pages").value;
-  var read = document.querySelector('input[name="read"]:checked').value;
+myLibrary.push(book1, book2, book3, book4);
 
-  console.log(title, author, pages, read);
 
-  const book1 = new Book(title, author, pages, read);
+function Book(title, author, pages, read) {
+  // the constructor
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+
+
+function getBookInfo () { 
+  const title_val = document.getElementById("title").value;
+  const author_val = document.getElementById("author").value;
+  const pages_val = document.getElementById("pages").value;
+  const read_val = document.querySelector('input[name="read"]:checked').value;
+  const book = new Book(title_val, author_val, pages_val, read_val);
+
+  myLibrary.push(book);
 
   dialog.close();
+
+  len = myLibrary.length;
+  addBookToLibrary();
 }
 
-function Book() {
-    // the constructor
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info  = function () {
-        return this.title + ' by ' + this.author + ', ' + this.pages 
-               + ', ' + this.read;
-    };
-}
+
 
 function addBookToLibrary () {
     // do stuff here
+  for (; i < len; i++) {
+    createLibCard(i);
+  }
 }
+
+
+function createLibCard (i) {
+  const libraryArea = document.querySelector('.library-area');
+  console.log(libraryArea);
+  
+  // create a new div element
+  const newDiv = document.createElement("div");
+  newDiv.classList.add('book-card');
+
+  const title = document.createElement('p');
+  title.innerText = "Title: " + myLibrary[i].title;
+
+  const author = document.createElement('p');
+  author.innerText = "Author: " + myLibrary[i].author;
+
+  const pages = document.createElement('p');
+  pages.innerText = "Pages: " + myLibrary[i].pages;
+
+  const read = document.createElement('p');
+  read.innerText = "Read: " + myLibrary[i].read;
+
+  // add the text node to the newly created div
+  newDiv.appendChild(title);
+  newDiv.appendChild(author);
+  newDiv.appendChild(pages);
+  newDiv.appendChild(read);
+
+  libraryArea.appendChild(newDiv);
+}
+
+var i = 0;
+var len = myLibrary.length;
+addBookToLibrary();
 
 
 const dialog = document.querySelector("dialog");
@@ -42,7 +88,7 @@ showButton.addEventListener("click", () => {
 });
 
 // Submit button stores values entered in form
-submitButton.addEventListener('click', getBookInfo, false);
+submitButton.addEventListener('click', getBookInfo);
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
