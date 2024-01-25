@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 // Example books for array
 const book1 = new Book ("Book A", "Author A", 123, "yes");
@@ -36,7 +36,13 @@ function getBookInfo () {
 
 
 function addBookToLibrary () {
-    // do stuff here
+  // do stuff here
+  let bookCards = document.querySelectorAll('.book-card').length;
+  console.log(bookCards);
+  console.log(i);
+  i = bookCards;
+  console.log(i);
+
   for (; i < len; i++) {
     createLibCard(i);
   }
@@ -50,6 +56,7 @@ function createLibCard (i) {
   // create a new div element
   const newDiv = document.createElement("div");
   newDiv.classList.add('book-card');
+  // newDiv.id = "book-" + i;
 
   const title = document.createElement('p');
   title.innerText = "Title: " + myLibrary[i].title;
@@ -61,19 +68,42 @@ function createLibCard (i) {
   pages.innerText = "Pages: " + myLibrary[i].pages;
 
   const read = document.createElement('p');
+  read.id = "read";
   read.innerText = "Read: " + myLibrary[i].read;
+
+  var btnRead = document.createElement("button");
+  btnRead.innerText = "Read?";
+  btnRead.onclick = function(){
+    if (read.innerText.includes("yes")) {
+      read.innerText = "Read: " + "no";
+    } else {
+      read.innerText = "Read: " + "yes";
+    }; return false;
+  };
+
+  var btnDel = document.createElement("button");
+  btnDel.innerText = "Delete";
+  btnDel.onclick = function(){
+    newDiv.parentNode.removeChild(newDiv)
+    delBooks = myLibrary.splice(i, 1);
+    len = myLibrary.length;
+    ; return false;
+  };
+
 
   // add the text node to the newly created div
   newDiv.appendChild(title);
   newDiv.appendChild(author);
   newDiv.appendChild(pages);
   newDiv.appendChild(read);
+  newDiv.appendChild(btnRead);
+  newDiv.appendChild(btnDel);
 
   libraryArea.appendChild(newDiv);
 }
 
-var i = 0;
-var len = myLibrary.length;
+let i = 0;
+let len = myLibrary.length;
 addBookToLibrary();
 
 
@@ -89,8 +119,18 @@ showButton.addEventListener("click", () => {
 
 // Submit button stores values entered in form
 submitButton.addEventListener('click', getBookInfo);
+// submitButton.addEventListener("keypress" , function(e){ 
+//   var key = e.which;
+//   if(key == 13) {
+//     getBookInfo();
+//   }
+// });
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
   dialog.close();
 });
+
+
+
+
