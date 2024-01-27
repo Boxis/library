@@ -25,17 +25,25 @@ function getBookInfo () {
   const title_val = document.getElementById("title").value;
   const author_val = document.getElementById("author").value;
   const pages_val = document.getElementById("pages").value;
-  const read_val = document.querySelector('input[name="read"]:checked').value;
+  const check_val = document.getElementById("read");  
+  console.log(check_val.checked);
+  if(check_val.checked == false) {
+    read_val = "no";
+  } else {
+    read_val = "yes";
+  }
+  
   const bookID_val = j;
   const book = new Book(title_val, author_val, pages_val, read_val, bookID_val);
 
   myLibrary.push(book);
 
-  dialog.close();
-
   j++;
   len = myLibrary.length;
   addBookToLibrary();
+
+  document.getElementById("myForm").reset();
+  dialog.close();
 }
 
 
@@ -45,27 +53,25 @@ function addBookToLibrary () {
   for (let i = 0; i < len; i++) {
     createLibCard(i);
   }
-  // console.log(myLibrary);
 }
 
 
 function createLibCard (i) {
   const libraryArea = document.querySelector('.library-area');
-  // console.log(libraryArea);
-  
+
   // create a new div element
   const newDiv = document.createElement("div");
   newDiv.classList.add('book-card');
   newDiv.id = "book-" + i;
 
   const title = document.createElement('p');
-  title.innerText = "Title: " + myLibrary[i].title;
+  title.innerText = myLibrary[i].title;
 
   const author = document.createElement('p');
-  author.innerText = "Author: " + myLibrary[i].author;
+  author.innerText = "by: " + myLibrary[i].author;
 
   const pages = document.createElement('p');
-  pages.innerText = "Pages: " + myLibrary[i].pages;
+  pages.innerText = myLibrary[i].pages + " pages";
 
   const read = document.createElement('p');
   read.id = "read";
@@ -73,13 +79,18 @@ function createLibCard (i) {
 
   const bookID = myLibrary[i].bookID;
 
+  const btnDiv = document.createElement("div");
+  btnDiv.classList.add('btn-div');
+
   var btnRead = document.createElement("button");
   btnRead.innerText = "Read?";
   btnRead.onclick = function(){
     if (read.innerText.includes("yes")) {
       read.innerText = "Read: " + "no";
+      myLibrary.find(book => book.bookID == bookID).read = 'no';
     } else {
       read.innerText = "Read: " + "yes";
+      myLibrary.find(book => book.bookID == bookID).read = 'yes';
     }; return false;
   };
 
@@ -96,8 +107,10 @@ function createLibCard (i) {
   newDiv.appendChild(author);
   newDiv.appendChild(pages);
   newDiv.appendChild(read);
-  newDiv.appendChild(btnRead);
-  newDiv.appendChild(btnDel);
+  btnDiv.appendChild(btnRead);
+  btnDiv.appendChild(btnDel);
+  newDiv.appendChild(btnDiv);
+
 
   libraryArea.appendChild(newDiv);
 }
@@ -120,6 +133,7 @@ submitButton.addEventListener('click', getBookInfo);
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
+  document.getElementById("myForm").reset();
   dialog.close();
 });
 

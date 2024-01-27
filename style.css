@@ -12,12 +12,30 @@ body {
 .container {
     display: grid;
     grid-template-rows: 100px 100px auto;
-    background-color: white;
+    background-color: #e5e5e5;
     height: auto;
     width: 100%;
     text-align: center;
     justify-items: center;
-    border: 1px solid red;
+}
+
+.heading-section {
+    display: grid;
+    width: 100%;
+    background-color:#fafafa;
+    align-content: center;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.43);
+}
+
+dialog {
+    background-color:#fafafa;
+    border-radius: 15%;
+    border: 1px solid #fafafa;
+}
+
+.checkbox-section {
+    display: flex;
+    justify-content: center;
 }
 
 .library-area {
@@ -25,19 +43,54 @@ body {
     flex-wrap: wrap;
     min-height: 100vh;
     width: 100%;
-    gap: 10px;
-    border: 1px solid red;
-    align-items: center;
+    gap: 43px;
     justify-content: space-evenly;
 }
 
 .book-card {
-    border: 1px solid black;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
+    background-color: white;
+    border-radius: 5%;
     height: 200px;
     width: 200px;
+    margin: 20px;
 }
 
+.btn-div {
+    justify-content: center;
+}
+
+button {
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover { 
+    color: black; 
+    filter: brightness(90%);
+    cursor: pointer; 
+} 
+
 #new-book-btn {
+    margin-top: 1em;
+    background-color: #e5e5e5;
     width: 150px;
     height: 50px;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+}
+
+ul li {
+    display: list-item;
+    padding: 5px 10px;
+    margin: 0 3px;
+}
+
+fieldset {
+    padding: 0;
 }
