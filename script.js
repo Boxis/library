@@ -3,10 +3,8 @@ let myLibrary = [];
 // Example books for array
 const book1 = new Book ("Book A", "Author A", 123, "yes", 0);
 const book2 = new Book ("Book B", "Author B", 123, "no", 1);
-const book3 = new Book ("Book C", "Author C", 11223, "yes", 2);
-const book4 = new Book ("Book D", "Author D", 11223, "yes", 3);
 
-myLibrary.push(book1, book2, book3, book4);
+myLibrary.push(book1, book2,);
 
 
 function Book(title, author, pages, read, bookID) {
@@ -22,6 +20,8 @@ let len = myLibrary.length;
 let j = len;
 
 function getBookInfo () { 
+  console.log('submitted');
+  // event.preventDefault();
   const title_val = document.getElementById("title").value;
   const author_val = document.getElementById("author").value;
   const pages_val = document.getElementById("pages").value;
@@ -43,6 +43,7 @@ function getBookInfo () {
   addBookToLibrary();
 
   document.getElementById("myForm").reset();
+  // toggleReq ()
   dialog.close();
 }
 
@@ -125,11 +126,15 @@ const submitButton = document.querySelector("#submit-btn");
 
 // "Show the dialog" button opens the dialog modally
 showButton.addEventListener("click", () => {
+  // toggleReq ()
   dialog.showModal();
 });
 
 // Submit button stores values entered in form
-submitButton.addEventListener('click', getBookInfo);
+submitButton.addEventListener('click', (event) => {
+  getBookInfo();
+  event.preventDefault();
+});
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
@@ -138,5 +143,11 @@ closeButton.addEventListener("click", () => {
 });
 
 
+function toggleReq (){
+  const inputs = document.querySelectorAll("input");
+  for (const input of inputs) {
+    input.toggleAttribute('required');
+  }
+}
 
 

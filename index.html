@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Library</title>
 </head>
@@ -21,22 +24,25 @@
                            id="title" 
                            name="title" 
                            placeholder="Title"
-                           required />
+                           required
+                            />
                 </p>
                 <p>
                     <input type="text" 
                            id="author" 
                            name="author" 
                            placeholder="Author"
-                           required />
+                           value="test"
+                            />
                 </p>
                 <p>
                     <input type="number" 
                            id="pages" 
                            name="pages"
                            min="0"
+                           value="1"
                            placeholder="Pages"
-                           required />
+                            />
                 </p>
                 <div class="checkbox-section">
                     <label for="read">Have you read it?</label>
@@ -49,7 +55,7 @@
             </form>
         </dialog>
 
-        <button id="new-book-btn">+ add book</button>
+        <button type="button" id="new-book-btn">+ add book</button>
 
         <div class="library-area">
             <!-- DOM Objects for books here -->
